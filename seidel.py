@@ -2,14 +2,13 @@ import numpy as np
 import time
 from math import sqrt
 
-def jacobi(A,b,x0,acc,it_max):
-	t=0
-	for i in range(0,len(A),1):                #Проверка метода на применимость
-		if 2*abs(A[i,i])>np.sum(abs(A[i])):
-			t+=1
-		else:
-			break
-	if t==len(A):
+def seidel(A,b,x0,acc,it_max):
+	simm=0
+	for i in range(1,len(A),1):                #Проверка метода на применимость
+		for j in range(0,i,1):
+			if A[i,j]==A[j,i]:
+				simm+=1
+	if simm==(len(A)**2-len(A))/2:
 		start_time=time.time()
 		x=np.zeros((2,len(A)),float)
 		x[1,:]=x0
@@ -17,8 +16,8 @@ def jacobi(A,b,x0,acc,it_max):
 		while sqrt(sum((x[1]-x[0])**2))>acc and k<it_max:
 			x[0,:]=x[1,:]
 			for i in range(0,len(A),1):
-				x[1,i]=(b[i]-(sum(A[i,:i]*x[0,:i])+sum(A[i,i+1:]*x[0,i+1:])))/A[i,i]
-			k+=1
+				x[1,i]=(b[i]-(sum(A[i,:i]*x[1,:i])+sum(A[i,i+1:]*x[0,i+1:])))/A[i,i]
+			k=k+1	
 		exec_time="---%s seconds ---" % (time.time() - start_time)
 		if k==it_max:
 			print("---Maximum number of iterations is reached!---")
@@ -30,14 +29,13 @@ def jacobi(A,b,x0,acc,it_max):
 		print("---Matrix is not correct!---")
 		return x0,0,0
 
-def jacobi_vec(A,b,x0,acc,it_max):
-	t=0
-	for i in range(0,len(A),1):
-		if 2*abs(A[i,i])>np.sum(abs(A[i])):
-			t+=1
-		else:
-			break
-	if t==len(A):
+def seidel_vec(A,b,x0,acc,it_max):
+	simm=0
+	for i in range(1,len(A),1):
+		for j in range(0,i,1):
+			if A[i,j]==A[j,i]:
+				simm+=1
+	if simm==(len(A)**2-len(A))/2:
 		start_time=time.time()
 		L=np.zeros((len(A),len(A)),float)
 		U=np.zeros((len(A),len(A)),float)
@@ -51,8 +49,8 @@ def jacobi_vec(A,b,x0,acc,it_max):
 		k=0
 		while sqrt(sum((x[1]-x[0])**2))>acc and k<it_max:
 			x[0,:]=x[1,:]
-			x[1]=np.dot(np.linalg.inv(D),(np.dot(-(L+U),x[0])+b))
-			k+=1
+			x[1]=np.dot(np.linalg.inv(D+L),(np.dot(-U,x[0])+b))
+			k=k+1
 		exec_time="---%s seconds ---" % (time.time() - start_time)
 		if k==it_max:
 			print("---Maximum number of iterations is reached!---")
