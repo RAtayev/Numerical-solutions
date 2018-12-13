@@ -1,3 +1,5 @@
+#coding=utf-8
+#Метод бисекций
 import math
 import matplotlib.pyplot as plt
 import numpy as np

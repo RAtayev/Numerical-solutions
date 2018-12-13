@@ -1,8 +1,10 @@
+#coding=utf-8
+#ћетод сопр€женных градиентов
 import numpy as np
 import time
-
-def cg(A, b, tol, it_max):
-simm=0
+                                                   #tol - точность, it_max - макс. число итераций
+def cg(A, b, tol, it_max):                         #A - матрица, b - свободный столбец
+	simm=0                                     #x0 - начальное приближение
 	for i in range(1,len(A),1):                #ѕроверка метода на применимость
 		for j in range(0,i,1):
 			if A[i,j]==A[j,i]:
@@ -29,12 +31,12 @@ simm=0
 				r = r - alpha*w
 				rho = np.dot(r, r)
 		exec_time="---%s seconds ---" % (time.time() - start_time)
-		if k==it_max:
+		if it==it_max:
 			print("---Maximum number of iterations is reached!---")
 			print("---Solution may not be accurate!---\n\n")
-			return x[1],k,exec_time
+			return x[1],it,exec_time
 		else:
-			return x[1],k,exec_time
+			return x[1],it,exec_time
 	else:
 		print("---Matrix is not correct!---")
 		return x0,0,0

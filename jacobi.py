@@ -1,9 +1,11 @@
+#coding=utf-8
+#ћетоды якоби
 import numpy as np
 import time
 from math import sqrt
-
-def jacobi(A,b,x0,acc,it_max):
-	t=0
+                                                   #acc - точность, it_max - макс. число итераций
+def jacobi(A,b,x0,acc,it_max):                     #A - матрица, b - свободный столбец
+	t=0                                        #x0 - начальное приближение
 	for i in range(0,len(A),1):                #ѕроверка метода на применимость
 		if 2*abs(A[i,i])>np.sum(abs(A[i])):
 			t+=1
@@ -30,7 +32,7 @@ def jacobi(A,b,x0,acc,it_max):
 		print("---Matrix is not correct!---")
 		return x0,0,0
 
-def jacobi_vec(A,b,x0,acc,it_max):
+def jacobi_vec(A,b,x0,acc,it_max):                  #¬екторна€ вариаци€ метода
 	t=0
 	for i in range(0,len(A),1):
 		if 2*abs(A[i,i])>np.sum(abs(A[i])):

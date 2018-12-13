@@ -1,9 +1,11 @@
+#coding=utf-8
+#Метод верхней релаксации
 import numpy as np
 import time
 from math import sqrt
-
-def sor(A,b,x0,o,acc,it_max):
-	simm=0
+                                                   #acc - точность, it_max - макс. число итераций
+def sor(A,b,x0,o,acc,it_max):                      #A - матрица, b - свободный столбец
+	simm=0                                     #x0 - начальное приближение
 	for i in range(1,len(A),1):                #Проверка метода на применимость
 		for j in range(0,i,1):
 			if A[i,j]==A[j,i]:
@@ -29,7 +31,7 @@ def sor(A,b,x0,o,acc,it_max):
 		print("---Matrix or omega is not correct!---")
 		return x0,0,0
 
-def sor_vec(A,b,x0,o,acc,it_max):
+def sor_vec(A,b,x0,o,acc,it_max):                  #Векторная вариация метода
 	simm=0
 	for i in range(1,len(A),1):
 		for j in range(0,i,1):

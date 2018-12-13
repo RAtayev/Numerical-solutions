@@ -1,3 +1,5 @@
+#coding=utf-8
+#ћетоды якоби, «ейдел€, верхней релаксации, сопр€женных градиентов
 import matplotlib.pyplot as plt
 import numpy as np
 import jacobi
@@ -13,7 +15,7 @@ def check(N,a,o):
 	bb=np.zeros(N,float)
 	x0=np.zeros(N)
 	A[0,0]=2
-	A[0,1]=-1-alfa
+	A[0,1]=-1+alfa
 	A[N-1,N-1]=2
 	A[N-1,N-2]=-1+alfa
 	b[0]=1-alfa
@@ -22,25 +24,17 @@ def check(N,a,o):
 	x0[N-1]=0.8
 	for i in range(1,N-1,1):
 		A[i,i]=2
-		A[i,i+1]=-1-alfa
+		A[i,i+1]=-1+alfa
 		A[i,i-1]=-1+alfa
 		b[i]=0
 		x0[i]=0.1*i
-	for i in range(0,N,1):
-		for j in range(0,N,1):
-			AA[i,j]=1/(i+j+1)
-	for i in range(0,N,1):
-		for j in range(0,N,1):
-			bb[i]=bb[i]+AA[i,j]
-	print(AA)
-	print(bb)
-	xj,kj=jacobi.jacobi(A,b,x0,1000)
-	xjv,kjv=jacobi.jacobi_vec(A,b,x0,1000)
-	xs,ks=seidel.seidel(AA,bb,x0)
-	xsv,ksv=seidel.seidel_vec(AA,bb,x0)
-	xsor,ksor=sor.sor(A,b,x0,o)
-	xsorv,ksorv=sor.sor_vec(A,b,x0,o)
-	xcg,kcg=cg.cg(AA,bb,0.00001,1000)
+	xj,kj,tj=jacobi.jacobi(A,b,x0,0.00001,1000)
+	xjv,kjv,tjv=jacobi.jacobi_vec(A,b,x0,0.00001,1000)
+	xs,ks,tjs=seidel.seidel(A,b,x0,0.00001,1000)
+	xsv,ksv,tsv=seidel.seidel_vec(A,b,x0,0.00001,1000)
+	xsor,ksor,tsor=sor.sor(A,b,x0,o,0.00001,1000)
+	xsorv,ksorv,tsorv=sor.sor_vec(A,b,x0,o,0.00001,1000)
+	xcg,kcg,tcg=cg.cg(A,b,0.00001,1000)
 	return kj,kjv,ks,ksv,ksor,ksorv,kcg
 
 T=5
@@ -53,11 +47,11 @@ ksv=[]
 kcg=[]
 for i in range(2,T,1):
 	N.append(i+1)
-	kj.append(check(i+1,a,1)[0])
-	kjv.append(check(i+1,a,1)[1])
-	ks.append(check(i+1,a,1)[2])
-	ksv.append(check(i+1,a,1)[3])
-	kcg.append(check(i+1,a,1)[6])
+	kj.append(check(i+1,a,1.3)[0])
+	kjv.append(check(i+1,a,1.3)[1])
+	ks.append(check(i+1,a,1.3)[2])
+	ksv.append(check(i+1,a,1.3)[3])
+	kcg.append(check(i+1,a,1.3)[6])
 
 al=np.arange(0.1,1,0.01)
 kja=[]
@@ -65,10 +59,10 @@ kjva=[]
 ksa=[]
 ksva=[]
 for i in range(0,len(al),1):
-	kja.append(check(10,al[i],1)[0])
-	kjva.append(check(10,al[i],1)[1])
-	ksa.append(check(10,al[i],1)[2])
-	ksva.append(check(10,al[i],1)[3])
+	kja.append(check(10,al[i],1.3)[0])
+	kjva.append(check(10,al[i],1.3)[1])
+	ksa.append(check(10,al[i],1.3)[2])
+	ksva.append(check(10,al[i],1.3)[3])
 
 o=np.arange(1.1,2,0.1)
 NO=5

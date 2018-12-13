@@ -1,3 +1,5 @@
+#coding=utf-8
+#Метод секущих
 from math import sin
 import matplotlib.pyplot as plt
 

@@ -1,6 +1,6 @@
 import numpy as np
 
-def R(A):
+def R(A): #‘ункци€ находит разложение дл€ одной итерации
 	A1 = np.array(A, float)
 	N = len(A)
 	W = np.zeros((N-1,N), float)
@@ -21,7 +21,7 @@ def R(A):
 	
 	return A1, Q0
 
-def qr(A, acc, it_max):
+def qr(A, acc, it_max): #A - матрица, acc - точность, it_max - максимальное число итераций
 	k = 0
 	R0, Q0 = R(A)
 	R1, Q1 = R(np.dot(R0, Q0))
@@ -37,8 +37,3 @@ def qr(A, acc, it_max):
 		k+=1
 	print(k)
 	return R1
-	
-
-A = np.array([[5, 6, 3],[-1, 0, 1],[1, 2, -1]])
-res = qr(A, 0.00001, 11)
-print(np.diag(res))
