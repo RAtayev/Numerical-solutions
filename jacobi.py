@@ -1,12 +1,12 @@
-#coding=utf-8
-#Ìåòîäû ßêîáè
+ï»¿#coding=utf-8
+#ĞœĞµÑ‚Ğ¾Ğ´Ñ‹ Ğ¯ĞºĞ¾Ğ±Ğ¸
 import numpy as np
 import time
 from math import sqrt
-                                                   #acc - òî÷íîñòü, it_max - ìàêñ. ÷èñëî èòåğàöèé
-def jacobi(A,b,x0,acc,it_max):                     #A - ìàòğèöà, b - ñâîáîäíûé ñòîëáåö
-	t=0                                        #x0 - íà÷àëüíîå ïğèáëèæåíèå
-	for i in range(0,len(A),1):                #Ïğîâåğêà ìåòîäà íà ïğèìåíèìîñòü
+                                                   #acc - Ñ‚Ğ¾Ñ‡Ğ½Ğ¾ÑÑ‚ÑŒ, it_max - Ğ¼Ğ°ĞºÑ. Ñ‡Ğ¸ÑĞ»Ğ¾ Ğ¸Ñ‚ĞµÑ€Ğ°Ñ†Ğ¸Ğ¹
+def jacobi(A,b,x0,acc,it_max):                     #A - Ğ¼Ğ°Ñ‚Ñ€Ğ¸Ñ†Ğ°, b - ÑĞ²Ğ¾Ğ±Ğ¾Ğ´Ğ½Ñ‹Ğ¹ ÑÑ‚Ğ¾Ğ»Ğ±ĞµÑ†
+	t=0                                        #x0 - Ğ½Ğ°Ñ‡Ğ°Ğ»ÑŒĞ½Ğ¾Ğµ Ğ¿Ñ€Ğ¸Ğ±Ğ»Ğ¸Ğ¶ĞµĞ½Ğ¸Ğµ
+	for i in range(0,len(A),1):                #ĞŸÑ€Ğ¾Ğ²ĞµÑ€ĞºĞ° Ğ¼ĞµÑ‚Ğ¾Ğ´Ğ° Ğ½Ğ° Ğ¿Ñ€Ğ¸Ğ¼ĞµĞ½Ğ¸Ğ¼Ğ¾ÑÑ‚ÑŒ
 		if 2*abs(A[i,i])>np.sum(abs(A[i])):
 			t+=1
 		else:
@@ -32,7 +32,7 @@ def jacobi(A,b,x0,acc,it_max):                     #A - ìàòğèöà, b - ñâîáîäíûé ñ
 		print("---Matrix is not correct!---")
 		return x0,0,0
 
-def jacobi_vec(A,b,x0,acc,it_max):                  #Âåêòîğíàÿ âàğèàöèÿ ìåòîäà
+def jacobi_vec(A,b,x0,acc,it_max):                  #Ğ’ĞµĞºÑ‚Ğ¾Ñ€Ğ½Ğ°Ñ Ğ²Ğ°Ñ€Ğ¸Ğ°Ñ†Ğ¸Ñ Ğ¼ĞµÑ‚Ğ¾Ğ´Ğ°
 	t=0
 	for i in range(0,len(A),1):
 		if 2*abs(A[i,i])>np.sum(abs(A[i])):

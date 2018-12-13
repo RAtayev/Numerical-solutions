@@ -1,4 +1,4 @@
-#Разложение Холецкого
+п»ї#Р Р°Р·Р»РѕР¶РµРЅРёРµ РҐРѕР»РµС†РєРѕРіРѕ
 import numpy as np
 from math import sqrt
 

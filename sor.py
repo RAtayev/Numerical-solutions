@@ -1,12 +1,12 @@
-#coding=utf-8
-#Метод верхней релаксации
+п»ї#coding=utf-8
+#РњРµС‚РѕРґ РІРµСЂС…РЅРµР№ СЂРµР»Р°РєСЃР°С†РёРё
 import numpy as np
 import time
 from math import sqrt
-                                                   #acc - точность, it_max - макс. число итераций
-def sor(A,b,x0,o,acc,it_max):                      #A - матрица, b - свободный столбец
-	simm=0                                     #x0 - начальное приближение
-	for i in range(1,len(A),1):                #Проверка метода на применимость
+                                                   #acc - С‚РѕС‡РЅРѕСЃС‚СЊ, it_max - РјР°РєСЃ. С‡РёСЃР»Рѕ РёС‚РµСЂР°С†РёР№
+def sor(A,b,x0,o,acc,it_max):                      #A - РјР°С‚СЂРёС†Р°, b - СЃРІРѕР±РѕРґРЅС‹Р№ СЃС‚РѕР»Р±РµС†
+	simm=0                                     #x0 - РЅР°С‡Р°Р»СЊРЅРѕРµ РїСЂРёР±Р»РёР¶РµРЅРёРµ
+	for i in range(1,len(A),1):                #РџСЂРѕРІРµСЂРєР° РјРµС‚РѕРґР° РЅР° РїСЂРёРјРµРЅРёРјРѕСЃС‚СЊ
 		for j in range(0,i,1):
 			if A[i,j]==A[j,i]:
 				simm+=1
@@ -31,7 +31,7 @@ def sor(A,b,x0,o,acc,it_max):                      #A - матрица, b - свободный с
 		print("---Matrix or omega is not correct!---")
 		return x0,0,0
 
-def sor_vec(A,b,x0,o,acc,it_max):                  #Векторная вариация метода
+def sor_vec(A,b,x0,o,acc,it_max):                  #Р’РµРєС‚РѕСЂРЅР°СЏ РІР°СЂРёР°С†РёСЏ РјРµС‚РѕРґР°
 	simm=0
 	for i in range(1,len(A),1):
 		for j in range(0,i,1):

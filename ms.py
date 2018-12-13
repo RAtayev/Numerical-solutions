@@ -1,5 +1,5 @@
-#coding=utf-8
-#Метод секущих
+п»ї#coding=utf-8
+#РњРµС‚РѕРґ СЃРµРєСѓС‰РёС…
 from math import sin
 import matplotlib.pyplot as plt
 

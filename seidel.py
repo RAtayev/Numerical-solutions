@@ -1,12 +1,12 @@
-#coding=utf-8
-#Методы Зейделя
+п»ї#coding=utf-8
+#РњРµС‚РѕРґС‹ Р—РµР№РґРµР»СЏ
 import numpy as np
 import time
 from math import sqrt
-                                                   #acc - точность, it_max - макс. число итераций
-def seidel(A,b,x0,acc,it_max):                     #A - матрица, b - свободный столбец
-	simm=0                                     #x0 - начальное приближение
-	for i in range(1,len(A),1):                #Проверка метода на применимость
+                                                   #acc - С‚РѕС‡РЅРѕСЃС‚СЊ, it_max - РјР°РєСЃ. С‡РёСЃР»Рѕ РёС‚РµСЂР°С†РёР№
+def seidel(A,b,x0,acc,it_max):                     #A - РјР°С‚СЂРёС†Р°, b - СЃРІРѕР±РѕРґРЅС‹Р№ СЃС‚РѕР»Р±РµС†
+	simm=0                                     #x0 - РЅР°С‡Р°Р»СЊРЅРѕРµ РїСЂРёР±Р»РёР¶РµРЅРёРµ
+	for i in range(1,len(A),1):                #РџСЂРѕРІРµСЂРєР° РјРµС‚РѕРґР° РЅР° РїСЂРёРјРµРЅРёРјРѕСЃС‚СЊ
 		for j in range(0,i,1):
 			if A[i,j]==A[j,i]:
 				simm+=1
@@ -31,7 +31,7 @@ def seidel(A,b,x0,acc,it_max):                     #A - матрица, b - свободный с
 		print("---Matrix is not correct!---")
 		return x0,0,0
 
-def seidel_vec(A,b,x0,acc,it_max):                  #Векторная вариация метода
+def seidel_vec(A,b,x0,acc,it_max):                  #Р’РµРєС‚РѕСЂРЅР°СЏ РІР°СЂРёР°С†РёСЏ РјРµС‚РѕРґР°
 	simm=0
 	for i in range(1,len(A),1):
 		for j in range(0,i,1):
