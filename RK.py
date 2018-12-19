@@ -6,11 +6,10 @@ import matplotlib.pyplot as plt
 def RK(F, tau, T, y0):
 	N = int(T/tau)+1
 	t_mas = np.array([tau*n for n in range(0, N)])
-	y = np.zeros((N, 2), float)
+	y = np.zeros((N, len(y0)), float)
 	y[0] = y0
-	print(t_mas)
-	print(y)
 	k = 0
+	print(y)
 	while tau*(k+1) < T:
 		k1 = F(t_mas[k], y[k])
 		k11 = [tau*i/2 for i in k1]
@@ -19,13 +18,13 @@ def RK(F, tau, T, y0):
 		k3 = F(t_mas[k] + tau/2, y[k] + k22)
 		k33 = [tau*i for i in k3]
 		k4 = F(t_mas[k] + tau, y[k] + k33)
-		k2 = [2*i for i in k2]
-		k3 = [2*i for i in k3]
-		temp = k1 + k2 + k3 + k4
-		K = [tau/6*i for i in temp]
-		print(K)
+		k2 = np.array([2*i for i in k2])
+		k3 = np.array([2*i for i in k3])
+		temp = np.array(k1 + k2 + k3 + k4)
+		K = np.array([tau/6*i for i in temp])
 		y[k+1] = y[k] + K
 		k += 1
+	print(y)
 	return t_mas, y
 
 def F(tn, yn):
